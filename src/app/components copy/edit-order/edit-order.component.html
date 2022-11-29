@@ -1,0 +1,129 @@
+<div class="card shadow border " style="background-color: rgb(121, 244, 227)">
+    <h5 class="card-header card-header-color header text-center" style="font-size: 40px">Add Order</h5>
+    <div class="card-body">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="row mb-3">
+
+                <div class="form-group col-4">
+                    <label for="">User Name</label><label style="color: red">*</label>
+                    <select class="form-control" formControlName="userId"
+                        [ngClass]="{ 'is-invalid': f['userId'].touched && f['userId'].errors }">
+                        <!-- <option value="">--Select--</option> -->
+                        <option *ngFor="let user of users" [value]="user.id">
+                            {{user.username}}
+                        </option>
+                    </select>
+
+                    <div *ngIf="f['userId'].touched && f['userId'].errors" class="invalid-feedback">
+                        <div *ngIf="f['userId'].errors['required']">User is required</div>
+                    </div>
+                </div>
+
+                <div class="form-group col-3">
+                    <label for="">Customer Name</label><label style="color: red">*</label>
+                    <input type="text" class="form-control" formControlName="customerName"
+                        [ngClass]="{ 'is-invalid': f['customerName'].touched && f['customerName'].errors }">
+                    <div *ngIf="f['customerName'].touched && f['customerName'].errors" class="invalid-feedback">
+                        <div *ngIf="f['customerName'].errors['required']">Customer Name is required</div>
+                    </div>
+                </div>
+
+                <div class="form-group col-3">
+                    <label for="">Customer Address</label><label style="color: red">*</label>
+                    <input type="text" class="form-control" formControlName="customerAddress"
+                        [ngClass]="{ 'is-invalid': f['customerAddress'].touched && f['customerAddress'].errors }">
+                    <div *ngIf="f['customerAddress'].touched && f['customerAddress'].errors" class="invalid-feedback">
+                        <div *ngIf="f['customerAddress'].errors['required']">Customer Address is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+
+                <div class="form-group col-5">
+                    <label for="">Product Name</label><label style="color: red">*</label>
+                    <select class="form-control" formControlName="productName"
+                        [ngClass]="{ 'is-invalid': f['productName'].touched && f['productName'].errors }">
+                        <!-- <option selected="selected">Select product</option> -->
+                        <option value="FastFood">Fast Food</option>
+                        <option value="Beryani">Beryani</option>
+                        <option value="Karahi">Karahi</option>
+                        <option value="Fish">Fish</option>
+                    </select>
+                    <div *ngIf="f['productName'].touched && f['productName'].errors" class="invalid-feedback">
+                        <div *ngIf="f['productName'].errors['required']">Product is required</div>
+                    </div>
+                </div>
+
+                <div class="form-group col-5">
+                    <label for="">Order Items</label><label style="color: red">*</label>
+                    <select class="form-control" formControlName="orderItems"
+                        [ngClass]="{ 'is-invalid': f['orderItems'].touched && f['orderItems'].errors }">
+                        <option value="Rolls">Rolls</option>
+                        <option value="Burgers">Burgers</option>
+                        <option value="Tikka">Tikka</option>
+                        <option value="zinger">zinger</option>
+                        <option value="White chawal">White chawal</option>
+                        <option value="Pulla">Pulla</option>
+                        <option value="White karahi">White karahi</option>
+                        <option value="Red karahi">Red karahi</option>
+                        <option value="Big fish">Big fish</option>
+                        <option value="Special fish">Special fish</option>
+                    </select>
+                    <div *ngIf="f['orderItems'].touched && f['orderItems'].errors" class="invalid-feedback">
+                        <div *ngIf="f['orderItems'].errors['required']">Order Item is required</div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row mb-3">
+
+
+                <div class="form-group col-5">
+                    <label for="">Order Quantity</label><label style="color: red">*</label>
+                    <input type="text" class="form-control" formControlName="orderQuantity"
+                        [ngClass]="{ 'is-invalid': f['orderQuantity'].touched && f['orderQuantity'].errors }">
+                    <div *ngIf="f['orderQuantity'].touched && f['orderQuantity'].errors" class="invalid-feedback">
+                        <div *ngIf="f['orderQuantity'].errors['required']">Order Quantity is required</div>
+                    </div>
+                </div>
+
+                <div class="form-group col-5">
+                    <label for="">Total price</label><label style="color: red">*</label>
+                    <input type="text" formControlName="totalPrice" class="form-control"
+                        [ngClass]="{ 'is-invalid': f['totalPrice'].touched && f['totalPrice'].errors }" />
+                    <div *ngIf="f['totalPrice'].touched && f['totalPrice'].errors" class="invalid-feedback">
+                        <div *ngIf="f['totalPrice'].errors['required']">Total Price is required</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row mb-3">
+
+                <div class="form-group col-5">
+                    <label for="">Order Date</label><label style="color: red">*</label>
+                    <input type="date" formControlName="createdDate" class="form-control"
+                        [ngClass]="{ 'is-invalid': f['createdDate'].touched && f['createdDate'].errors }" />
+                    <div *ngIf="f['createdDate'].touched && f['createdDate'].errors" class="invalid-feedback">
+                        <div *ngIf="f['createdDate'].errors['required']">Order Date is required</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="form-group form-check">
+                    <label for="">Payment Recieve</label>
+                    <input type="checkbox" class="form-check-input" formControlName="paid">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-success me-1" [disabled]="!registerForm.valid">Save</button>
+                    <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

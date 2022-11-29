@@ -1,0 +1,46 @@
+<div class="container mt-3">
+  <div class="card shadow border " style="background-color: rgb(149, 227, 246)">
+
+    <h5 class="card-header card-header-color header text-center" style="font-size: 40px; color: rgb(23, 2, 82);">Login
+      Here !!</h5><br>
+    <div class="container">
+      <div class="container">
+        <div class="container">
+          <div class="container">
+            <div class="container">
+              <div class="container">
+                <div class="container">
+                  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+                    <div class="form-group">
+                      <label for="">Username</label><label style="color: red">*</label>
+                      <input type="text" formControlName="username" class="form-control"
+                        [ngClass]="{ 'is-invalid': f['username'].touched && f['username'].errors }" />
+                      <div *ngIf="f['username'].touched && f['username'].errors" class="invalid-feedback">
+                        <div *ngIf="f['username'].errors['required']">UserName is required</div>
+                      </div>
+                    </div><br>
+
+                    <div class="form-group">
+                      <label for="">Password</label><label style="color: red">*</label>
+                      <input type="password" class="form-control" formControlName="password"
+                        [ngClass]="{ 'is-invalid': f['password'].touched && f['password'].errors }">
+                      <div *ngIf="f['password'].touched && f['password'].errors" class="invalid-feedback">
+                        <div *ngIf="f['password'].errors['required']">Password is required</div>
+                      </div>
+                    </div><br><br>
+
+
+                    <div class="row mb-3">
+                      <div class="form-group text-center">
+                        <button type="submit" class="btn btn-success me-1" [disabled]="!loginForm.valid">Login</button>
+                        <button type="button" class="btn btn-danger" routerLink="/signup">Register</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
